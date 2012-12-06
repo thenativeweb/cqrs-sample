@@ -27,11 +27,6 @@ the source code is well documented to understand the core principles.
                
 ## got the sample - where to go now?
 
-As of today i know of three implementations for doing (D)DDD / CQRS in node.js. Building a codebase for production is a whole different 
-thing to doing a little show case / demo code. If it can break - it will break.
-
-### my modules
-
 This modules are the result of open sourcing parts of a large reallife project of a distributed system based on the principle of 
 DDDD and CQRS. It's gone through a lot of iterations and should address most pitfalls.
 
