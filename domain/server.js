@@ -8,11 +8,17 @@ var colors = require('../colors')
 var options = {
     commandHandlersPath: __dirname + '/commandHandlers',
     aggregatesPath: __dirname + '/aggregates',
+    sagaHandlersPath: __dirname + '/sagaHandlers',
+    sagasPath: __dirname + '/sagas',
     eventStore: {
         type: 'inMemory', //'mongoDb',
         dbName: 'cqrssample'
     },
     commandQueue: {
+        type: 'inMemory', //'mongoDb',
+        dbName: 'cqrssample'
+    },
+    repository: {
         type: 'inMemory', //'mongoDb',
         dbName: 'cqrssample'
     }
