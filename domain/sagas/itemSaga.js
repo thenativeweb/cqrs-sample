@@ -6,8 +6,9 @@ module.exports = base.extend({
         
         if (data.text.toLowerCase().indexOf('delete') >= 0) {
             this.sendCommand( { command: 'deleteItem', payload: { id: data.id } } );
-            this.set('destroyed', true);
         }
+
+        this.set('destroyed', true);
     }
 
 });
