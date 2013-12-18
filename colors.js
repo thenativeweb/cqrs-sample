@@ -31,15 +31,16 @@ var addProperty = function (color, func) {
   exports[color] = function(str) {
     return func.apply(str);
   };
+  
+  // __defineGetter__ at the least works in more browsers
+  // http://robertnyman.com/javascript/javascript-getters-setters.html
+  // Object.defineProperty only works in Chrome
   String.prototype.__defineGetter__(color, func);
 };
 
 var isHeadless = (typeof module !== 'undefined');
 ['bold', 'underline', 'italic', 'inverse', 'grey', 'black', 'yellow', 'red', 'green', 'blue', 'white', 'cyan', 'magenta'].forEach(function (style) {
 
-  // __defineGetter__ at the least works in more browsers
-  // http://robertnyman.com/javascript/javascript-getters-setters.html
-  // Object.defineProperty only works in Chrome
   addProperty(style, function () {
     return isHeadless ?
              stylize(this, style) : // for those running in node (headless environments)
