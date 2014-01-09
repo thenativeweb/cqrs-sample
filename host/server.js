@@ -5,7 +5,7 @@ var express = require('express')
   , http = require('http')
   , colors = require('../colors')
   , socket = require('socket.io')
-  , contextEventDenormalizer = require('cqrs-eventdenormalizer').contextEventDenormalizer
+  , eventDenormalizer = require('cqrs-eventdenormalizer').eventDenormalizer
   , repository = require('viewmodel').read;
 
 // create an configure:
@@ -32,12 +32,16 @@ io.configure(function() {
 console.log('\nBOOTSTRAPPING:'.cyan);
 
 var options = {
-    denormalizersPath: __dirname + '/eventDenormalizers',
+    viewBuildersPath: __dirname + '/viewBuilders',
     repository: {
         type: 'inMemory', //'mongoDb',
         dbName: 'cqrssample'
     },
     eventQueue: {
+        type: 'inMemory', //'mongoDb',
+        dbName: 'cqrssample'
+    },
+    revisionGuardStore: {
         type: 'inMemory', //'mongoDb',
         dbName: 'cqrssample'
     }
@@ -47,7 +51,7 @@ console.log('1. -> viewmodel'.cyan);
 repository.init(options.repository, function(err) {
 
     console.log('2. -> eventdenormalizer'.cyan);
-    contextEventDenormalizer.initialize(options, function(err) {
+    eventDenormalizer.initialize(options, function(err) {
         if(err) {
             console.log(err);
         }
@@ -63,13 +67,13 @@ repository.init(options.repository, function(err) {
         // - let it be handled from the eventDenormalizer to update the viewmodel storage
         msgbus.onEvent(function(data) {
             console.log(colors.cyan('eventDenormalizer -- denormalize event ' + data.event));
-            contextEventDenormalizer.denormalize(data);
+            eventDenormalizer.denormalize(data);
         });
 
-        // on receiving an __event__ from contextEventDenormalizer module:
+        // on receiving an __event__ from eventDenormalizer module:
         //
         // - forward it to connected browsers via socket.io
-        contextEventDenormalizer.on('event', function(evt) {
+        eventDenormalizer.on('event', function(evt) {
             console.log(colors.magenta('\nsocket.io -- publish event ' + evt.event + ' to browser'));
             io.sockets.emit('events', evt);
         });
