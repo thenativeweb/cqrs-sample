@@ -34,15 +34,15 @@ console.log('\nBOOTSTRAPPING:'.cyan);
 var options = {
     viewBuildersPath: __dirname + '/viewBuilders',
     repository: {
-        type: 'inMemory', //'mongoDb',
+        type: 'inMemory', //'mongodb',
         dbName: 'cqrssample'
     },
     eventQueue: {
-        type: 'inMemory', //'mongoDb',
+        type: 'inMemory', //'mongodb',
         dbName: 'cqrssample'
     },
     revisionGuardStore: {
-        type: 'inMemory', //'mongoDb',
+        type: 'inMemory', //'mongodb',
         dbName: 'cqrssample'
     }
 };

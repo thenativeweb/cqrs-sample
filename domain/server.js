@@ -11,15 +11,15 @@ var options = {
     sagaHandlersPath: __dirname + '/sagaHandlers',
     sagasPath: __dirname + '/sagas',
     eventStore: {
-        type: 'inMemory', //'mongoDb',
+        type: 'inMemory', //'mongodb',
         dbName: 'cqrssample'
     },
     commandQueue: {
-        type: 'inMemory', //'mongoDb',
+        type: 'inMemory', //'mongodb',
         dbName: 'cqrssample'
     },
     repository: {
-        type: 'inMemory', //'mongoDb',
+        type: 'inMemory', //'mongodb',
         dbName: 'cqrssample'
     }
 };
