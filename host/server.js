@@ -6,7 +6,7 @@ var express = require('express')
   , colors = require('../colors')
   , socket = require('socket.io')
   , eventDenormalizer = require('cqrs-eventdenormalizer').eventDenormalizer
-  , repository = require('viewmodel').read;
+  , viewmodel = require('viewmodel');
 
 // create an configure:
 //
@@ -48,7 +48,7 @@ var options = {
 };
 
 console.log('1. -> viewmodel'.cyan);
-repository.init(options.repository, function(err) {
+viewmodel.read(options.repository, function(err, repository) {
 
     console.log('2. -> eventdenormalizer'.cyan);
     eventDenormalizer.initialize(options, function(err) {
@@ -57,7 +57,7 @@ repository.init(options.repository, function(err) {
         }
 
         console.log('3. -> routes'.cyan);
-        require('./app/routes').actions(app, options);
+        require('./app/routes').actions(app, options, repository);
 
         console.log('4. -> message bus'.cyan);
         var msgbus = require('../msgbus');

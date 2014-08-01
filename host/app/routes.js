@@ -1,9 +1,8 @@
-var repository = require('viewmodel').read
-  , itemRepo = repository.extend({
+exports.actions = function(app, options, repository) {
+
+    var itemRepo = repository.extend({
         collectionName: 'item'
     });
-
-exports.actions = function(app, options) {
 
     // this is only a little hack for this sample when it should work with inMemory DB
     if (options.repository.type === 'inMemory') {
