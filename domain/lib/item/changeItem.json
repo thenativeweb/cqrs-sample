@@ -1,0 +1,25 @@
+{
+  "title": "changeItem",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "command": {
+      "type": "string"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": ["id", "text"]
+    }
+  },
+  "required": ["id", "command", "payload"]
+}

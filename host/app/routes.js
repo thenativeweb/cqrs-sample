@@ -5,8 +5,8 @@ exports.actions = function(app, options, repository) {
     });
 
     // this is only a little hack for this sample when it should work with inMemory DB
-    if (options.repository.type === 'inMemory') {
-        itemRepo = require('../viewBuilders/itemViewBuilder').repository;
+    if (options.repository.type === 'inmemory') {
+        itemRepo = require('../viewBuilders/collection').repository;
     }
 
     app.get('/', function(req, res) {

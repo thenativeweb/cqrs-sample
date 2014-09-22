@@ -2,31 +2,36 @@
 //
 // `node server.js` 
 var colors = require('../colors')
-  , msgbus = require('../msgbus')
-  , domain = require('cqrs-domain').domain;
+  , msgbus = require('../msgbus');
 
-var options = {
-    commandHandlersPath: __dirname + '/commandHandlers',
-    aggregatesPath: __dirname + '/aggregates',
-    sagaHandlersPath: __dirname + '/sagaHandlers',
-    sagasPath: __dirname + '/sagas',
+
+var domain = require('cqrs-domain')({
+    domainPath: __dirname + '/lib',
     eventStore: {
         type: 'inMemory', //'mongodb',
         dbName: 'cqrssample'
-    },
-    commandQueue: {
-        type: 'inMemory', //'mongodb',
-        dbName: 'cqrssample'
-    },
-    repository: {
-        type: 'inMemory', //'mongodb',
-        dbName: 'cqrssample'
     }
-};
+});
 
-domain.initialize(options, function(err) {
-    if(err) {
-        console.log(err);
+domain.defineCommand({
+  id: 'id',
+  name: 'command',
+  aggregateId: 'payload.id',
+  payload: 'payload',
+  revision: 'head.revision'
+});
+domain.defineEvent({
+  correlationId: 'commandId',
+  id: 'id',
+  name: 'event',
+  aggregateId: 'payload.id',
+  payload: 'payload',
+  revision: 'head.revision'
+});
+
+domain.init(function(err) {
+    if (err) {
+        return console.log(err);
     }
 
     // on receiving a message (__=command__) from msgbus pass it to 
@@ -41,10 +46,10 @@ domain.initialize(options, function(err) {
     });
 
     // on receiving a message (__=event) from domain pass it to the msgbus
-    domain.on('event', function(evt) {
+    domain.onEvent(function(evt) {
         console.log('domain: ' + evt.event);
         msgbus.emitEvent(evt);
-    });    
+    });
     
     console.log('Starting domain service'.cyan);
 });
