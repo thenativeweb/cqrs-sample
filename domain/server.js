@@ -17,7 +17,6 @@ domain.defineCommand({
   id: 'id',
   name: 'command',
   aggregateId: 'payload.id',
-  aggregate: 'aggregate.name',
   payload: 'payload',
   revision: 'head.revision'
 });
@@ -26,7 +25,6 @@ domain.defineEvent({
   id: 'id',
   name: 'event',
   aggregateId: 'payload.id',
-  aggregate: 'aggregate.name',
   payload: 'payload',
   revision: 'head.revision'
 });
