@@ -44,3 +44,8 @@ The API is designed well so you can focus on the domain without worring to much 
 
 
 Documentation can be found [here](http://adrai.github.com/cqrs/)
+
+
+## other examples
+
+- [https://github.com/smariussorin/EventSourcedMicroservices](https://github.com/smariussorin/EventSourcedMicroservices)
