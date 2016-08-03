@@ -24,6 +24,7 @@ the source code is well documented to understand the core principles.
 
 - [Clarified CQRS - Udi Dahan](http://www.udidahan.com/2009/12/09/clarified-cqrs/)
 - [Top 10 Reasons to do CQRS - Rinat Abdullin](http://abdullin.com/journal/2010/10/22/top-10-reasons-to-do-cqrs-in-a-pdf.html)
+- [CQRS why, what, how - Jeppe Cramon](http://www.slideshare.net/jeppec/cqrs-why-what-how)
                
 ## got the sample - where to go now?
 
