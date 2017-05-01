@@ -10,7 +10,7 @@ This is a sample implementation of CQRS / Eventsourcing Infrastructure in node.j
 
 ### get it up and running
 
-1.  install and start [Redis](https://redis.io/)
+0.  install and start [Redis](https://redis.io/)
         
 1.  start server in _host_ and _domain_ folder
 
