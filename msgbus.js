@@ -1,9 +1,14 @@
 // the hub encapsulates functionality to send or receive messages from redis.
 
+const redisConfig = {
+  port: process.env.REDIS_PORT || 6379,
+  host: process.env.REDIS_HOST || '127.0.0.1'
+};
+
 var redis = require('redis')
   , colors = require('./colors')
-  , cmd = redis.createClient()
-  , evt = redis.createClient()
+  , cmd = redis.createClient(redisConfig)
+  , evt = redis.createClient(redisConfig)
   , evtSubscriptions = []
   , cmdSubscriptions = [];
 

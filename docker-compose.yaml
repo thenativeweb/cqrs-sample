@@ -1,0 +1,22 @@
+version: '3'
+services:
+  hostapp:
+    build: 
+      context: .
+      dockerfile: Dockerfile-Host
+    environment:
+      - REDIS_HOST=redis
+    ports:
+      - 3000:3000
+    links:
+      - redis
+  domainapp:
+    build: 
+      context: .
+      dockerfile: Dockerfile-Domain
+    environment:
+      - REDIS_HOST=redis
+    links:
+      - redis
+  redis:
+    image: redis:latest
